@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   AppShell,
   Navbar,
@@ -11,23 +11,44 @@ import {
   Group,
   ActionIcon,
 } from "@mantine/core";
-import { IconSun, IconMoonStars } from "@tabler/icons";
 import { AppNavbar } from "../nav-bar";
+import Dashboard from "@/components/dashboard";
+import Users from "@/components/users";
+import Settings from "../settings";
+import Orders from "../orders";
+import Shop from "../shop";
+import { Pages } from "@/constants";
+import { User } from "@/types";
 
-export default function AppShellDemo() {
+export default function AppShellDemo({ user }: { user?: User }) {
   const [opened, setOpened] = useState(false);
+
+  const pages = {
+    [Pages.dashboard]: <Dashboard user={user} />,
+    [Pages.users]: <Users />,
+    [Pages.settings]: <Settings />,
+    [Pages.orders]: <Orders />,
+    [Pages.shop]: <Shop />,
+    [Pages.logout]: <></>,
+  };
+
+  const [activeComponent, setActiveComponent] = useState<React.ReactNode>(
+    pages.Dashboard
+  );
+
+  const setSelectedComponent = (component: Pages) => {
+    setActiveComponent(pages[component]);
+  };
+
   return (
     <AppShell
       styles={(theme) => ({
         main: {
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
+          backgroundColor: theme.colors.gray[0],
         },
       })}
       navbarOffsetBreakpoint="sm"
-      navbar={<AppNavbar />}
+      navbar={<AppNavbar setActiveComponent={setSelectedComponent} />}
       header={
         <Header height={70} p="md">
           <div
@@ -42,12 +63,12 @@ export default function AppShellDemo() {
               />
             </MediaQuery>
 
-            <Text>Application header</Text>
+            <Text>Business Name</Text>
           </div>
         </Header>
       }
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      {activeComponent}
     </AppShell>
   );
 }

@@ -3,7 +3,13 @@ import { UnstyledButton, Group, Box, useMantineTheme } from "@mantine/core";
 import { User } from "@/types";
 import { UserAvatarWithEmail } from "../user-avatar-with-email";
 
-export function ButtonWithUserInfo({ user }: { user: User }) {
+export function ButtonWithUserInfo({
+  user,
+  onClick,
+}: {
+  user: User;
+  onClick: Function;
+}) {
   const theme = useMantineTheme();
 
   return (
@@ -25,6 +31,7 @@ export function ButtonWithUserInfo({ user }: { user: User }) {
             backgroundColor: theme.colors.gray[0],
           },
         }}
+        onClick={() => onClick()}
       >
         <Group style={{ justifyContent: "space-between" }}>
           <UserAvatarWithEmail user={user} />
