@@ -1,12 +1,9 @@
 import * as React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import {
-  MantineProvider,
-  ColorScheme,
-  ColorSchemeProvider,
-} from "@mantine/core";
-import { getCookie, setCookie } from "cookies-next";
+import { MantineProvider, ColorScheme } from "@mantine/core";
+import { mockUser } from "@/utils/mock-data";
+import { UserContext } from "@/contexts/user-context";
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -29,7 +26,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         withGlobalStyles
         withNormalizeCSS
       >
-        <Component {...pageProps} />
+        <UserContext.Provider value={{ user: mockUser }}>
+          <Component {...pageProps} />
+        </UserContext.Provider>
       </MantineProvider>
     </>
   );

@@ -1,7 +1,7 @@
 import { User } from "@/types";
 
 export const mockUser: User = {
-  name: "Jon Snow",
+  name: "Jon",
   email: "lordsnow@thenorth.com",
-  imageSRC: "@/assets/mock-assets/jon-snow.webp",
+  imageSRC: "/jon-snow.webp",
 };
