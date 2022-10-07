@@ -5,7 +5,6 @@ import { Group, Stack, Text, Title } from "@mantine/core";
 import styles from "./dashboard.module.scss";
 
 export default function Dashboard({ user }: { user?: User }) {
-  console.log("User in dash", user);
   return (
     <>
       <div className={styles.main}>
