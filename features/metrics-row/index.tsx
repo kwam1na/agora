@@ -39,7 +39,7 @@ const MetricsRow = () => {
       direction: "positive",
       insights: {
         increase: "+1.5%",
-        change: "13",
+        change: "+13",
       },
     },
     refunds: {

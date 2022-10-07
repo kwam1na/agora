@@ -7,7 +7,7 @@ export function ButtonWithUserInfo({
   user,
   onClick,
 }: {
-  user: User;
+  user?: User;
   onClick: Function;
 }) {
   const theme = useMantineTheme();

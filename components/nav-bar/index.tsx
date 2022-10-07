@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Navbar } from "@mantine/core";
 import { ButtonWithUserInfo } from "../user-avatar";
 import { linksData } from "./constants";
-import { mockUser } from "@/utils/mock-data";
 import { useStyles } from "./useStyles";
 import { Pages } from "@/constants";
+import { User } from "@/types";
 
 export const AppNavbar = ({
+  user,
   setActiveComponent,
 }: {
+  user?: User;
   setActiveComponent: (page: Pages) => void;
 }) => {
   const { classes, cx } = useStyles();
@@ -45,7 +47,7 @@ export const AppNavbar = ({
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        <ButtonWithUserInfo user={mockUser} onClick={() => alert("Hodor")} />
+        <ButtonWithUserInfo user={user} onClick={() => alert("Hodor")} />
       </Navbar.Section>
     </Navbar>
   );

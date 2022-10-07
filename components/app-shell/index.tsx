@@ -1,16 +1,5 @@
 import React, { useState } from "react";
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Footer,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineColorScheme,
-  Group,
-  ActionIcon,
-} from "@mantine/core";
+import { AppShell, Header, Text, MediaQuery, Burger } from "@mantine/core";
 import { AppNavbar } from "../nav-bar";
 import Dashboard from "@/components/dashboard";
 import Users from "@/components/users";
@@ -48,7 +37,9 @@ export default function AppShellDemo({ user }: { user?: User }) {
         },
       })}
       navbarOffsetBreakpoint="sm"
-      navbar={<AppNavbar setActiveComponent={setSelectedComponent} />}
+      navbar={
+        <AppNavbar setActiveComponent={setSelectedComponent} user={user} />
+      }
       header={
         <Header height={70} p="md">
           <div
