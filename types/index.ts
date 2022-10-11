@@ -14,3 +14,8 @@ export type MetricCardProps = {
     change: string;
   };
 };
+
+export type NavigationControllerItem = {
+  component: React.ReactNode;
+  title: string;
+};

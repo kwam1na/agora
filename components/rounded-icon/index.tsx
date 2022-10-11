@@ -7,7 +7,7 @@ const RoundedIcon = ({
   icon,
 }: {
   width: number;
-  icon: ReactElement;
+  icon?: ReactElement;
 }) => {
   const containerStyle: CSSProperties = {
     width: `${width}px`,

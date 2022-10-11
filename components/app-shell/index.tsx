@@ -8,6 +8,7 @@ import Orders from "../orders";
 import Shop from "../shop";
 import { Pages } from "@/constants";
 import { User } from "@/types";
+import { mockMetrics } from "@/utils/mock-data";
 
 export default function AppShellDemo({ user }: { user?: User }) {
   const [opened, setOpened] = useState(false);

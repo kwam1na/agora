@@ -1,12 +1,20 @@
-import MetricCard from "@/features/metric-card";
+import { Pages } from "@/constants";
 import MetricsRow from "@/features/metrics-row";
 import { User } from "@/types";
+import { mockMetrics } from "@/utils/mock-data";
 import { Group, Stack, Text, Title } from "@mantine/core";
+import Layout from "../layout";
 import styles from "./dashboard.module.scss";
 
-export default function Dashboard({ user }: { user?: User }) {
+export default function Dashboard({
+  user,
+  state,
+}: {
+  user?: User;
+  state?: any;
+}) {
   return (
-    <>
+    <Layout component={Pages.dashboard}>
       <div className={styles.main}>
         <Stack spacing={"xs"} justify="flex-start" style={{ width: "100%" }}>
           <Title order={1}> Welcome back, {user?.name} </Title>
@@ -14,10 +22,10 @@ export default function Dashboard({ user }: { user?: User }) {
             Here&apos;s what&apos;s happening with your store today
           </Title>
           <Group>
-            <MetricsRow />
+            <MetricsRow metrics={mockMetrics} loading={false} />
           </Group>
         </Stack>
       </div>
-    </>
+    </Layout>
   );
 }
