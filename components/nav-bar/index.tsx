@@ -5,32 +5,31 @@ import { linksData } from "./constants";
 import { useStyles } from "./useStyles";
 import { Pages } from "@/constants";
 import { User } from "@/types";
+import Link from "next/link";
 
 export const AppNavbar = ({
   user,
   setActiveComponent,
+  component,
 }: {
   user?: User;
-  setActiveComponent: (page: Pages) => void;
+  component?: Pages;
+  setActiveComponent?: (page: Pages) => void;
 }) => {
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState("Dashboard");
+  const [active, setActive] = useState(component);
 
   const links = linksData.map((item) => (
-    <a
-      className={cx(classes.link, {
-        [classes.linkActive]: item.label === active,
-      })}
-      key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(item.label);
-        setActiveComponent(item.label);
-      }}
-    >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
-    </a>
+    <Link href={item.href} key={item.label}>
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: item.label === active,
+        })}
+      >
+        <item.icon className={classes.linkIcon} stroke={1.5} />
+        <span>{item.label}</span>
+      </a>
+    </Link>
   ));
 
   return (
