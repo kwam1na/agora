@@ -54,7 +54,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
               justifyContent: "center",
             }}
           >
-            {isLoading && <Loader color={"gray"} />}
+            {isLoading && <Loader />}
           </div>
           <Component {...pageProps} />
         </UserContext.Provider>

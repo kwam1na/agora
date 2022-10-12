@@ -1,12 +1,10 @@
 import { Text } from "@mantine/core";
-import NavigationController from "../navigation-controller";
-import { NavigationControllerItem } from "@/types";
 import React from "react";
-import Users from "../users";
 import Layout from "../layout";
 import { Pages } from "@/constants";
 import EmptyState from "@/features/empty-state";
-import { IconBasket, IconUsers } from "@tabler/icons";
+import { IconBasket } from "@tabler/icons";
+import Head from "next/head";
 
 export default function Shop() {
   const handleAddProductClick = () => {
@@ -14,10 +12,13 @@ export default function Shop() {
   };
   return (
     <Layout component={Pages.shop}>
+      <Head>
+        <title>{Pages.shop}</title>
+      </Head>
       <EmptyState
-        illustration={<IconBasket size={"240px"} />}
+        illustration={<IconBasket size={"240px"} color={"gray"} />}
         headerText={"Every sold-out sale begins with the first product"}
-        body={"Add products to your store"}
+        body={"Let's begin by adding a product"}
         ctaText={"Add product"}
         onCTAClick={handleAddProductClick}
       />
