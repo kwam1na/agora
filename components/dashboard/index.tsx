@@ -7,13 +7,7 @@ import Layout from "../layout";
 import styles from "./dashboard.module.scss";
 import Head from "next/head";
 
-export default function Dashboard({
-  user,
-  state,
-}: {
-  user?: User;
-  state?: any;
-}) {
+export default function Dashboard({ user }: { user?: User }) {
   return (
     <Layout component={Pages.dashboard}>
       <Head>
