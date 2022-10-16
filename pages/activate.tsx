@@ -15,18 +15,46 @@ import {
   INITIAL_STATE,
   formReducer,
 } from "@/reducers/activateAccoutFormReducer";
+import Head from "next/head";
+import * as EmailValidator from "email-validator";
 
 const ActivateAccount = () => {
   const [activated, setActivated] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [showEmailWarning, setShowEmailWarning] = React.useState(false);
+  const [showPasswordWarning, setShowPasswordWarining] = React.useState(false);
+  const [enteredDetails, setEnteredDetails] = React.useState(false);
   const [user, setUser] = React.useState<User>();
   const [state, dispatch] = React.useReducer(formReducer, INITIAL_STATE);
+
+  const validPassword = (password: string) => {
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
     });
+
+    switch (e.target.name) {
+      case "activationCode":
+        break;
+
+      case "email":
+        if (!EmailValidator.validate(e.target.value)) {
+          setShowEmailWarning(true);
+        } else setShowEmailWarning(false);
+        break;
+
+      case "password":
+        break;
+
+      default:
+        break;
+    }
+
+    console.log(state);
   };
 
   const handleActivateClick = () => {
@@ -44,7 +72,10 @@ const ActivateAccount = () => {
   };
   return (
     <div className={styles.container}>
-      <LoadingOverlay visible={isLoading} />
+      <Head>
+        <title>Agora</title>
+      </Head>
+      <LoadingOverlay visible={isLoading} loaderProps={{ color: "gray" }} />
       <div className={styles.left}>
         <div className={styles.leftContent}>
           <Title order={1}>
@@ -62,6 +93,7 @@ const ActivateAccount = () => {
               tabIndex={isLoading ? -1 : 0}
               onChange={handleInputChange}
               name="email"
+              error={showEmailWarning && "Please enter a valid email address"}
             />
             {!activated ? (
               <TextInput
@@ -78,6 +110,11 @@ const ActivateAccount = () => {
                 tabIndex={isLoading ? -1 : 0}
                 onChange={handleInputChange}
                 name="password"
+                error={
+                  showPasswordWarning &&
+                  "Password must include at least one letter, number and special character"
+                }
+                withAsterisk
               />
             )}
 
@@ -89,6 +126,7 @@ const ActivateAccount = () => {
                 !user ? handleActivateClick : handleCreateUserAccountClick
               }
               tabIndex={isLoading ? -1 : 0}
+              disabled={!enteredDetails}
             >
               Continue
             </Button>
