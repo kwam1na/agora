@@ -1,0 +1,53 @@
+.content {
+  height: auto;
+  background-color: white;
+  border-radius: inherit;
+}
+
+.title {
+  padding: 16px 24px;
+}
+
+.actionButtons {
+  display: flex;
+  width: 100%;
+  padding: 24px;
+  gap: 16px;
+}
+
+.upload {
+  width: 50%;
+}
+
+.uploadFull {
+  width: 100%;
+}
+
+.reset {
+  width: 50%;
+}
+
+.images {
+  display: flex;
+  padding: 24px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 24px;
+  position: relative;
+}
+
+.image {
+  width: 160px;
+  height: 180px;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.imageTitle {
+  width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

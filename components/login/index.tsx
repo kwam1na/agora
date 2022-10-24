@@ -13,8 +13,9 @@ const Login = () => {
   const [showError, setShowError] = React.useState(false);
 
   const handleOnLoginClick = () => {
-    console.log("Details: ", email, password);
-    setShowError((e) => !e);
+    // console.log("Details: ", email, password);
+    // setShowError((e) => !e);
+    window.location.href = "/dashboard";
   };
 
   const handleOnEnterText = (e: React.ChangeEvent<HTMLInputElement>) => {

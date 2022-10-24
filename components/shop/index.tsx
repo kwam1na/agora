@@ -8,7 +8,7 @@ import Head from "next/head";
 
 export default function Shop() {
   const handleAddProductClick = () => {
-    alert("Hodor!");
+    window.location.href = "/addProduct";
   };
   return (
     <Layout component={Pages.shop}>

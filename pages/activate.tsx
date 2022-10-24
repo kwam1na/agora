@@ -37,17 +37,27 @@ const ActivateAccount = () => {
       payload: { name: e.target.name, value: e.target.value },
     });
 
+    let email = EmailValidator.validate(state.email) ? state.email : "",
+      activationCode = state.activationCode || "",
+      password = state.password || "";
+
     switch (e.target.name) {
       case "activationCode":
+        activationCode = e.target.value;
         break;
 
       case "email":
         if (!EmailValidator.validate(e.target.value)) {
           setShowEmailWarning(true);
-        } else setShowEmailWarning(false);
+          email = "";
+        } else {
+          setShowEmailWarning(false);
+          email = e.target.value;
+        }
         break;
 
       case "password":
+        password = e.target.value;
         break;
 
       default:
@@ -55,6 +65,12 @@ const ActivateAccount = () => {
     }
 
     console.log(state);
+
+    if (!activated) {
+      setEnteredDetails(email !== "" && activationCode !== "");
+    } else {
+      setEnteredDetails(email !== "" && password != "");
+    }
   };
 
   const handleActivateClick = () => {
@@ -64,11 +80,13 @@ const ActivateAccount = () => {
       setUser((u) => mockUser);
       setIsLoading(false);
       setActivated(true);
+      setEnteredDetails(false);
     }, 3000);
   };
 
   const handleCreateUserAccountClick = () => {
-    alert("Handle create user account..");
+    setIsLoading(true);
+    window.location.href = "/dashboard";
   };
   return (
     <div className={styles.container}>
