@@ -38,7 +38,7 @@ const FileInput = () => {
     <InputContainer>
       <div className={styles.content}>
         <div className={styles.title}>
-          <Text weight={"bold"}>Media</Text>
+          <Text>Media</Text>
         </div>
         <FileButton
           onChange={handleUploadImage}

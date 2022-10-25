@@ -1,5 +1,5 @@
 import InputContainer from "@/components/input-container";
-import { Divider, NumberInput, Text } from "@mantine/core";
+import { NumberInput, Text } from "@mantine/core";
 import styles from "./pricingInput.module.scss";
 import * as React from "react";
 
@@ -53,7 +53,7 @@ const PricingInput = () => {
     <InputContainer>
       <div className={styles.content}>
         <div className={styles.title}>
-          <Text weight={"bold"}>Pricing</Text>
+          <Text>Pricing</Text>
           <div className={styles.price}>
             <NumberInput
               label="Price"

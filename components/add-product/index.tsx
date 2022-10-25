@@ -8,6 +8,9 @@ import BackButton from "../back-button";
 import ProductTitleAndDescriptionInput from "@/features/product-title-and-description-input";
 import FileInput from "@/features/file-input";
 import PricingInput from "@/features/pricing-input";
+import ProductStatus from "@/features/product-status";
+import ProductOrganizationInput from "@/features/product-organization-input";
+import InventoryInput from "@/features/inventory-input";
 
 const AddProduct = () => {
   return (
@@ -25,9 +28,11 @@ const AddProduct = () => {
             <ProductTitleAndDescriptionInput />
             <FileInput />
             <PricingInput />
+            <InventoryInput />
           </div>
           <div className={styles.side}>
-            <ProductTitleAndDescriptionInput />
+            <ProductStatus />
+            <ProductOrganizationInput />
           </div>
         </div>
       </div>
