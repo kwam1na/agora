@@ -6,7 +6,7 @@ interface EmptyStateProps {
   illustration?: React.ReactNode;
   headerText: string;
   body: string;
-  onCTAClick?: Function;
+  onCTAClick?: () => void;
   ctaText?: string;
 }
 const EmptyState = ({
@@ -30,7 +30,12 @@ const EmptyState = ({
         </div>
         {onCTAClick && (
           <div className={styles.cta}>
-            <Button size="md" color={"dark"} variant="outline">
+            <Button
+              size="md"
+              color={"dark"}
+              variant="outline"
+              onClick={onCTAClick}
+            >
               {ctaText}
             </Button>
           </div>

@@ -1,6 +1,15 @@
 import { Pages } from "@/constants";
-import { AppShell, Header, Text, MediaQuery, Burger } from "@mantine/core";
+import {
+  AppShell,
+  Header,
+  Text,
+  MediaQuery,
+  Burger,
+  Button,
+} from "@mantine/core";
+import HeaderButtons from "../header-buttons";
 import { AppNavbar } from "../nav-bar";
+import styles from "./layout.module.scss";
 const Layout = ({
   children,
   component,

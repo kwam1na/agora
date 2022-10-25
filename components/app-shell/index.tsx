@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { AppShell, Header, Text, MediaQuery, Burger } from "@mantine/core";
+import {
+  AppShell,
+  Header,
+  Text,
+  MediaQuery,
+  Burger,
+  Button,
+} from "@mantine/core";
 import { AppNavbar } from "../nav-bar";
 import Dashboard from "@/components/dashboard";
 import Users from "@/components/users";
@@ -44,7 +51,13 @@ export default function AppShellDemo({ user }: { user?: User }) {
       header={
         <Header height={70} p="md">
           <div
-            style={{ display: "flex", alignItems: "center", height: "100%" }}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              height: "100%",
+              background: "red",
+            }}
           >
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Burger
@@ -55,7 +68,8 @@ export default function AppShellDemo({ user }: { user?: User }) {
               />
             </MediaQuery>
 
-            <Text>Business Name</Text>
+            <Text>Hoodr!</Text>
+            <Button>Yo!</Button>
           </div>
         </Header>
       }

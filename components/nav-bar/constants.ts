@@ -14,5 +14,5 @@ export const linksData = [
   { href: "/shop", label: Pages.shop, icon: IconBuildingStore },
   { href: "/orders", label: Pages.orders, icon: IconPackage },
   { href: "/settings", label: Pages.settings, icon: IconSettings },
-  { href: "/logout", label: Pages.logout, icon: IconLogout },
+  { href: "/signin", label: Pages.logout, icon: IconLogout },
 ];
