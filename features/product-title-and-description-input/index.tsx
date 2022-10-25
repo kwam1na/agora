@@ -8,10 +8,10 @@ const ProductTitleAndDescriptionInput = () => {
       <InputContainer>
         <div className={styles.content}>
           <div className={styles.title}>
-            <TextInput label="Title" placeholder="Black closure" />
+            <TextInput label="Title" placeholder="e.g, Closure" required />
           </div>
           <div className={styles.description}>
-            <Textarea label="Description" autosize />
+            <Textarea label="Description" autosize required />
           </div>
         </div>
       </InputContainer>

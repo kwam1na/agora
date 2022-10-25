@@ -11,6 +11,7 @@ import PricingInput from "@/features/pricing-input";
 import ProductStatus from "@/features/product-status";
 import ProductOrganizationInput from "@/features/product-organization-input";
 import InventoryInput from "@/features/inventory-input";
+import HeaderButtons from "../header-buttons";
 
 const AddProduct = () => {
   return (
@@ -34,6 +35,13 @@ const AddProduct = () => {
             <ProductStatus />
             <ProductOrganizationInput />
           </div>
+        </div>
+
+        <div className={styles.footer}>
+          <HeaderButtons
+            onPrimaryClick={() => alert("Hodor")}
+            onSecondaryClick={() => window.history.back()}
+          />
         </div>
       </div>
     </Layout>

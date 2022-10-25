@@ -68,6 +68,7 @@ const PricingInput = () => {
                   : ``
               }
               hideControls
+              required
             />
           </div>
           {price && (

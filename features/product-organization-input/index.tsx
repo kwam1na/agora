@@ -10,16 +10,31 @@ const ProductOrganizationInput = () => {
           <Text>Product Organization</Text>
         </div>
         <div className={styles.categoryField}>
-          <TextInput label="Product Category" placeholder="e.g, Closures" />
+          <TextInput
+            label="Product Category"
+            placeholder="e.g, Wigs"
+            required
+          />
         </div>
         <div className={styles.typeField}>
-          <TextInput label="Product Type" placeholder="e.g, Wig" />
+          <TextInput
+            label="Product Subcategory"
+            placeholder="e.g, Closures"
+            required
+          />
+        </div>
+        <div className={styles.typeField}>
+          <TextInput
+            label="Product Type"
+            placeholder="e.g, Human hair"
+            required
+          />
         </div>
         <div className={styles.colorField}>
-          <TextInput label="Product Color" />
+          <TextInput label="Product Color" required />
         </div>
         <div className={styles.vendorField}>
-          <TextInput label="Vendor" />
+          <TextInput label="Vendor" required />
         </div>
       </div>
     </InputContainer>

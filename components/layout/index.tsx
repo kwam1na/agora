@@ -35,10 +35,7 @@ const Layout = ({
               <Burger opened={false} size="sm" mr="xl" />
             </MediaQuery>
 
-            <div className={styles.headerItems}>
-              <Text>Business Name</Text>
-              <HeaderButtons />
-            </div>
+            <Text>Business Name</Text>
           </div>
         </Header>
       }
