@@ -20,14 +20,6 @@ const enum ProductStatus {
 const LOW_COUNT_THRESHOLD = 5;
 
 const ProductsPage = () => {
-  const elements = [
-    { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-    { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-    { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-    { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-    { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
-  ];
-
   const products = [
     {
       name: "Mizani Miracle Oil",
@@ -70,23 +62,6 @@ const ProductsPage = () => {
       vendor: "Wigclub",
     },
   ];
-
-  const rows = products.map((product, index) => (
-    <tr key={index}>
-      <td>{product.name}</td>
-      <td>{product.status}</td>
-      <td
-        className={
-          product.inventory < LOW_COUNT_THRESHOLD ? styles.lowCount : ""
-        }
-      >
-        {product.inventory}
-      </td>
-      <td>{product.category}</td>
-      <td>{product.subcategory}</td>
-      <td>{product.vendor}</td>
-    </tr>
-  ));
 
   const getProducts = (status: ProductStatus) => {
     switch (status) {
