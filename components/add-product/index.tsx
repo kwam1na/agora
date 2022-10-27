@@ -14,6 +14,9 @@ import InventoryInput from "@/features/inventory-input";
 import HeaderButtons from "../header-buttons";
 
 const AddProduct = () => {
+  const saveProduct = () => {
+    alert("saving...");
+  };
   return (
     <Layout component={Pages.shop}>
       <Head>
@@ -39,7 +42,7 @@ const AddProduct = () => {
 
         <div className={styles.footer}>
           <HeaderButtons
-            onPrimaryClick={() => alert("Hodor")}
+            onPrimaryClick={saveProduct}
             onSecondaryClick={() => window.history.back()}
           />
         </div>
