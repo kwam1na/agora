@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Appointment, CustomerDetails } from "../lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/spinner";
+import { ATHENA_URL } from "@/lib/constants";
 
 export default function Appointments() {
   const [userDetails, setUserDetails] = useState<CustomerDetails | null>(null);
@@ -18,7 +19,7 @@ export default function Appointments() {
     queryKey: ["pending-appointments"],
     queryFn: () =>
       fetch(
-        `http://localhost:8080/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=pending`
+        `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=pending`
       ).then((res) => res.json()),
     enabled: !!userDetails,
   });

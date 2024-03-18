@@ -1,5 +1,6 @@
 "use client";
 
+import { ATHENA_URL } from "@/lib/constants";
 import { useQuery } from "@tanstack/react-query";
 import { CalendarCheck, Store } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +9,7 @@ export const Header = () => {
   const shopQuery = useQuery({
     queryKey: ["shop-data"],
     queryFn: () =>
-      fetch("http://localhost:8080/api/v1/stores/1").then((res) => res.json()),
+      fetch(`${ATHENA_URL}/api/v1/stores/1`).then((res) => res.json()),
   });
 
   return (

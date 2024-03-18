@@ -5,6 +5,7 @@ import { BookedApointment } from "./components/booked-appointment";
 import { Appointment, CustomerDetails } from "@/app/lib/types";
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { ATHENA_URL } from "@/lib/constants";
 
 export default function PastAppointments() {
   const [userDetails, setUserDetails] = useState<CustomerDetails | null>(null);
@@ -18,7 +19,7 @@ export default function PastAppointments() {
     queryKey: ["ended-appointments"],
     queryFn: () =>
       fetch(
-        `http://localhost:8080/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=canceled,ended`
+        `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=canceled,ended`
       ).then((res) => res.json()),
     enabled: !!userDetails,
   });

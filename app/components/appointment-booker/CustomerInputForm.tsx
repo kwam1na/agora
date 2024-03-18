@@ -27,6 +27,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ATHENA_URL } from "@/lib/constants";
 
 type CustomerDetails = {
   first_name: string;
@@ -149,7 +150,7 @@ export function CustomerInputForm() {
 
   const bookAppointment = async () => {
     const response = await fetch(
-      "http://localhost:8080/api/v1/1/services/appointments",
+      `${ATHENA_URL}/api/v1/1/services/appointments`,
       {
         method: "POST",
         headers: {

@@ -32,7 +32,7 @@ const StoreHours: React.FC<StoreInfoProps> = ({ hours }) => {
   const todayFormatted = format(today, "iii");
   return (
     <div className="space-y-4 w-full">
-      {hours.map((hour) => {
+      {hours?.map((hour) => {
         return (
           <StoreHour
             key={hour.day}
@@ -54,7 +54,7 @@ export const StoreInfo = ({
   businessHours: BusinessHours;
 }) => {
   const { storeLocation, storePhoneNumber } = useAppointmentSelector();
-  const hours = businessHours.map((hour) => ({
+  const hours = businessHours?.map((hour) => ({
     day: hour.day,
     hours: hour.is_closed ? "Closed" : `${hour.open_time} - ${hour.close_time}`,
   }));

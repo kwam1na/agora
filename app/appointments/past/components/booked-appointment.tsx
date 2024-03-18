@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { InfoLine } from "./info-line";
+import { ATHENA_URL } from "@/lib/constants";
 
 export const BookedApointment = ({
   appointment,
@@ -27,7 +28,7 @@ export const BookedApointment = ({
 
   const cancelAppointment = async () => {
     const response = await fetch(
-      `http://localhost:8080/api/v1/1/services/appointments/${appointment.id}`,
+      `${ATHENA_URL}/api/v1/1/services/appointments/${appointment.id}`,
       {
         method: "PATCH",
         headers: {

@@ -9,6 +9,9 @@ import { Spinner } from "@/components/ui/spinner";
 import { BusinessHours, StoreLocation } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { EmptyState } from "../components/empty-state";
+import { HeartCrack } from "lucide-react";
+import { ATHENA_URL } from "@/lib/constants";
 
 const StorePage = () => {
   const { selectedService, setStoreLocation, setStorePhoneNumber } =
@@ -17,14 +20,14 @@ const StorePage = () => {
     queryKey: ["services"],
     queryFn: () =>
       fetch(
-        "http://localhost:8080/api/v1/1/services?appointment.status=pending,in-progress"
+        `${ATHENA_URL}/api/v1/1/services?appointment.status=pending,in-progress`
       ).then((res) => res.json()),
   });
 
   const shopQuery = useQuery({
     queryKey: ["shop-data"],
     queryFn: () =>
-      fetch("http://localhost:8080/api/v1/stores/1").then((res) => res.json()),
+      fetch(`${ATHENA_URL}/api/v1/stores/1`).then((res) => res.json()),
   });
 
   const businessHours: BusinessHours = shopQuery.data?.store_hours;
@@ -48,7 +51,7 @@ const StorePage = () => {
   return (
     <div className="flex flex-col h-screen pb-8">
       <div className="flex-grow space-y-8 pb-12">
-        {!loadingData && (
+        {!loadingData && !servicesQuery.isError && (
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="flex w-full xl:w-[25%] gap-4">
               <ServicesContainer services={servicesQuery.data} />
@@ -61,15 +64,27 @@ const StorePage = () => {
               />
               {selectedService && <AppointmentBooker />}
             </div>
-            <div className="w-full xl:w-[25%]">
-              <StoreInfo businessHours={businessHours} />
-            </div>
+            {businessHours?.length > 0 && (
+              <div className="w-full xl:w-[25%]">
+                <StoreInfo businessHours={businessHours} />
+              </div>
+            )}
           </div>
         )}
         {loadingData && (
           <div className="w-full h-screen flex items-center justify-center">
             <Spinner size="lg" />
           </div>
+        )}
+        {servicesQuery.isError && (
+          <EmptyState
+            icon={
+              <HeartCrack className="w-[116px] h-[116px] text-muted-foreground" />
+            }
+            text={
+              "We are having some issues right now. Please try again later."
+            }
+          />
         )}
       </div>
     </div>

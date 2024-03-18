@@ -1,3 +1,5 @@
+export const ATHENA_URL = "https://athena-amber.vercel.app";
+
 export const containerVariants = {
   hidden: {
     opacity: 0,

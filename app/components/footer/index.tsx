@@ -4,6 +4,7 @@ import { useAppointmentSelector } from "../appointment-selector-provider";
 import { format, isToday } from "date-fns";
 import { LoadingButton } from "../loading-button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ATHENA_URL } from "@/lib/constants";
 
 export const Footer = () => {
   const {
@@ -36,7 +37,7 @@ export const Footer = () => {
   };
 
   const bookAppointment = async () => {
-    return await fetch("http://localhost:8080/api/v1/1/services/appointments", {
+    return await fetch(`${ATHENA_URL}/api/v1/1/services/appointments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
