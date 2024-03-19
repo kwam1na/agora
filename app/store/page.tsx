@@ -14,8 +14,12 @@ import { HeartCrack } from "lucide-react";
 import { ATHENA_URL } from "@/lib/constants";
 
 const StorePage = () => {
-  const { selectedService, setStoreLocation, setStorePhoneNumber } =
-    useAppointmentSelector();
+  const {
+    selectedService,
+    setStoreLocation,
+    setStorePhoneNumber,
+    selectedDate,
+  } = useAppointmentSelector();
   const servicesQuery = useQuery({
     queryKey: ["services"],
     queryFn: () =>
@@ -62,7 +66,7 @@ const StorePage = () => {
                 endTime={selectedService?.end_time}
                 interval={selectedService?.interval_type}
               />
-              {selectedService && <AppointmentBooker />}
+              {selectedService && selectedDate && <AppointmentBooker />}
             </div>
             {businessHours?.length > 0 && (
               <div className="w-full xl:w-[25%]">

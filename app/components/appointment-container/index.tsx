@@ -237,6 +237,7 @@ export const AppointmentsContainer = ({
   interval?: string;
 }) => {
   const hasSelectedService = startTime && endTime && interval;
+  const { selectedDate } = useAppointmentSelector();
   return (
     <div className="w-full space-y-4">
       <h2 className="text-md">When should we expect you?</h2>
@@ -244,7 +245,7 @@ export const AppointmentsContainer = ({
         <div>
           <DateSelector />
         </div>
-        {hasSelectedService && (
+        {hasSelectedService && selectedDate && (
           <TimeSelector
             startTime={startTime}
             endTime={endTime}
