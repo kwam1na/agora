@@ -51,13 +51,14 @@ export const ServicesContainer = ({ services }: { services: Service[] }) => {
   return (
     <div className="w-full space-y-4">
       <p className="text-md">Services</p>
-      {services?.map((service) => (
-        <ServiceOption
-          key={service.id}
-          service={service}
-          currency={shop?.currency}
-        />
-      ))}
+      {services &&
+        services?.map((service) => (
+          <ServiceOption
+            key={service.id}
+            service={service}
+            currency={shop?.currency}
+          />
+        ))}
     </div>
   );
 };

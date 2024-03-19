@@ -51,7 +51,7 @@ const StorePage = () => {
   return (
     <div className="flex flex-col h-screen pb-8">
       <div className="flex-grow space-y-8 pb-12">
-        {!loadingData && !servicesQuery.isError && (
+        {!loadingData && !servicesQuery.isError && servicesQuery.data && (
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="flex w-full xl:w-[25%] gap-4">
               <ServicesContainer services={servicesQuery.data} />
