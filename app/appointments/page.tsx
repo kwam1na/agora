@@ -9,18 +9,23 @@ import { ATHENA_URL } from "@/lib/constants";
 
 export default function Appointments() {
   const [userDetails, setUserDetails] = useState<CustomerDetails | null>(null);
+  const [loadedUserDetails, setLoadedUserDetails] = useState(false);
 
   useEffect(() => {
     const savedDetails = localStorage.getItem("customer-details");
     setUserDetails(savedDetails ? JSON.parse(savedDetails) : null);
+    setLoadedUserDetails(true);
   }, []);
 
   const appointmentsQuery = useQuery({
     queryKey: ["pending-appointments"],
     queryFn: () =>
       fetch(
-        `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=pending`
+        `${ATHENA_URL}/api/v1/1/services/appointments?customer_emails=${userDetails?.email_addresses.join(
+          ","
+        )}&status=pending`
       ).then((res) => res.json()),
+    enabled: loadedUserDetails,
   });
 
   const appointments: Appointment[] = appointmentsQuery?.data;

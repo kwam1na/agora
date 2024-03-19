@@ -12,7 +12,7 @@ export const AppointmentDetailsScreen = () => {
   const { clear, storePhoneNumber } = useAppointmentSelector();
   return (
     <motion.div
-      className="p-8 space-y-4 h-[300px] w-full md:w-[25%] border border-1 rounded-md bg-white"
+      className="p-8 space-y-4 h-[300px] w-full md:w-[50%] xl:w-[25%] border border-1 rounded-md bg-white"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

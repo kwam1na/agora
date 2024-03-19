@@ -9,18 +9,23 @@ import { ATHENA_URL } from "@/lib/constants";
 
 export default function PastAppointments() {
   const [userDetails, setUserDetails] = useState<CustomerDetails | null>(null);
+  const [loadedUserDetails, setLoadedUserDetails] = useState(false);
 
   useEffect(() => {
     const savedDetails = localStorage.getItem("customer-details");
     setUserDetails(savedDetails ? JSON.parse(savedDetails) : null);
+    setLoadedUserDetails(true);
   }, []);
 
   const appointmentsQuery = useQuery({
     queryKey: ["ended-appointments"],
     queryFn: () =>
       fetch(
-        `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=canceled,ended`
+        `${ATHENA_URL}/api/v1/1/services/appointments?customer_emails=${userDetails?.email_addresses.join(
+          ","
+        )}&status=canceled,ended`
       ).then((res) => res.json()),
+    enabled: loadedUserDetails,
   });
 
   const appointments: Appointment[] = appointmentsQuery?.data;

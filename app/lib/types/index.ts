@@ -32,6 +32,6 @@ export type Appointment = {
 export type CustomerDetails = {
   first_name: string;
   last_name: string;
-  email: string;
+  email_addresses: string[];
   phone_number: string;
 };
