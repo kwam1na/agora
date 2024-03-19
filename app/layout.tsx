@@ -6,7 +6,7 @@ import { Header } from "./components/header";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "Wigclub",
+  title: "Wigclub - Book an appointment",
   description: "Book an appointment for a service at Wigclub",
 };
 
