@@ -223,8 +223,8 @@ export function CustomerInputForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
         {!savedCustomerDetails && (
           <div className="flex flex-col gap-4">
-            <div className="flex gap-4">
-              <div className="w-[50%]">
+            <div className="flex flex-col xl:flex-row gap-4">
+              <div className="w-full xl:w-[50%]">
                 <FormField
                   control={form.control}
                   name="first_name"
@@ -232,14 +232,15 @@ export function CustomerInputForm() {
                     <FormItem>
                       <FormLabel>First name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Jon" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="w-[50%]">
+
+              <div className="w-full xl:w-[50%]">
                 <FormField
                   control={form.control}
                   name="last_name"
@@ -247,7 +248,7 @@ export function CustomerInputForm() {
                     <FormItem>
                       <FormLabel>Last name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Snow" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -256,7 +257,7 @@ export function CustomerInputForm() {
               </div>
             </div>
 
-            <div className="w-[50%]">
+            <div className="w-full xl:w-[50%]">
               <FormField
                 control={form.control}
                 name="email"
@@ -264,7 +265,7 @@ export function CustomerInputForm() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="jon.snow@thenorth.co" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -272,7 +273,7 @@ export function CustomerInputForm() {
               />
             </div>
 
-            <div className="w-[50%]">
+            <div className="w-full xl:w-[50%]">
               <FormField
                 control={form.control}
                 name="phone_number"
@@ -280,7 +281,7 @@ export function CustomerInputForm() {
                   <FormItem>
                     <FormLabel>Phone number</FormLabel>
                     <FormControl>
-                      <Input placeholder="+233 123 456 789" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -290,9 +291,9 @@ export function CustomerInputForm() {
           </div>
         )}
 
-        <div className="w-full flex justify-end gap-8 items-center">
+        <div className="w-full flex flex-col xl:flex-row xl:justify-end gap-8 items-center">
           {!savedCustomerDetails && (
-            <div className="flex items-center space-x-2">
+            <div className="w-full xl:w-auto flex items-center space-x-2">
               <Switch
                 id="customer-details"
                 checked={shouldSaveCustomerDetails}
@@ -302,7 +303,9 @@ export function CustomerInputForm() {
             </div>
           )}
           <div
-            className={`${!hasSelectedAppointment ? "cursor-not-allowed" : ""}`}
+            className={`${
+              !hasSelectedAppointment ? "cursor-not-allowed" : ""
+            } w-full xl:w-auto`}
           >
             <LoadingButton
               isLoading={mutation.isPending}

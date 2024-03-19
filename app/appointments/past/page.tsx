@@ -21,7 +21,6 @@ export default function PastAppointments() {
       fetch(
         `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=canceled,ended`
       ).then((res) => res.json()),
-    enabled: !!userDetails,
   });
 
   const appointments: Appointment[] = appointmentsQuery?.data;

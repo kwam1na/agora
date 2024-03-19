@@ -21,7 +21,6 @@ export default function Appointments() {
       fetch(
         `${ATHENA_URL}/api/v1/1/services/appointments?customer_email=${userDetails?.email}&status=pending`
       ).then((res) => res.json()),
-    enabled: !!userDetails,
   });
 
   const appointments: Appointment[] = appointmentsQuery?.data;

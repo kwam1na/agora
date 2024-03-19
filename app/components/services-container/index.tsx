@@ -1,17 +1,20 @@
 import { Service } from "@/app/lib/types";
-import { formatter } from "@/app/lib/utils";
 import { useAppointmentSelector } from "../appointment-selector-provider";
-import { Separator } from "@/components/ui/separator";
 import { CheckCircle2 } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { Shop } from "@/lib/types";
+import { shopQueryKey } from "@/lib/query-keys";
 
 interface ServiceProps {
   service: Service;
+  currency?: string;
 }
 
-const ServiceOption: React.FC<ServiceProps> = ({ service }) => {
+const ServiceOption: React.FC<ServiceProps> = ({ currency, service }) => {
   const { selectedService, setSelectedService, setSelectedTimeSlot } =
     useAppointmentSelector();
-  const { name, price, currency, id } = service;
+
+  const { name, price } = service;
   const fmt = new Intl.NumberFormat("en-US", { style: "currency", currency });
   const isSelected = selectedService?.id === service.id;
 
@@ -42,11 +45,18 @@ const ServiceOption: React.FC<ServiceProps> = ({ service }) => {
 };
 
 export const ServicesContainer = ({ services }: { services: Service[] }) => {
+  const queryClient = useQueryClient();
+  const shop = queryClient.getQueryData<Shop>(shopQueryKey);
+
   return (
     <div className="w-full space-y-4">
       <p className="text-md">Services</p>
       {services?.map((service) => (
-        <ServiceOption key={service.id} service={service} />
+        <ServiceOption
+          key={service.id}
+          service={service}
+          currency={shop?.currency}
+        />
       ))}
     </div>
   );

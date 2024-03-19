@@ -1,7 +1,7 @@
 "use client";
 
-import { format, isToday } from "date-fns";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { format, isToday, isTomorrow } from "date-fns";
+import { Calendar, CalendarCheck, Clock, MapPin, Scissors } from "lucide-react";
 import { useAppointmentSelector } from "../appointment-selector-provider";
 import { Separator } from "@/components/ui/separator";
 import { CustomerInputForm } from "./CustomerInputForm";
@@ -33,6 +33,8 @@ export const AppointmentDetails = () => {
   if (selectedDate) {
     appointmentDetails = isToday(selectedDate)
       ? `Later today at ${selectedTimeSlot}`
+      : isTomorrow(selectedDate)
+      ? `Tomorrow at ${selectedTimeSlot}`
       : `${format(selectedDate, "MMMM dd, yyyy")} at ${selectedTimeSlot}`;
   }
 
@@ -41,7 +43,7 @@ export const AppointmentDetails = () => {
       <AppointmentInfo
         title="Service"
         info={selectedService.name}
-        icon={<Calendar className="w-4 h-4 text-muted-foreground" />}
+        icon={<Scissors className="w-4 h-4 text-muted-foreground" />}
       />
       <AppointmentInfo
         title="Date"
