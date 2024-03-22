@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ReactQueryClientProvider } from "./components/react-query-client-provider";
 import { AppointmentSelectorProvider } from "./components/appointment-selector-provider";
@@ -8,6 +8,12 @@ import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Wigclub - Book an appointment",
   description: "Book an appointment for a service at Wigclub",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
