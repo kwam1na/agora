@@ -55,39 +55,42 @@ export default function AppointmentPage() {
   return (
     <div className="flex flex-col h-screen pb-8">
       <div className="flex-grow space-y-8 pb-12">
-        {!loadingData && !servicesQuery.isError && servicesQuery.data && (
-          <div className="flex flex-col lg:flex-row gap-12">
-            <div className="flex w-full xl:w-[25%] gap-4">
-              <ServicesContainer services={servicesQuery.data} />
-            </div>
-            <div className="w-full lg:w-[50%] flex flex-col gap-8">
-              <AppointmentsContainer
-                startTime={selectedService?.start_time}
-                endTime={selectedService?.end_time}
-                interval={selectedService?.interval_type}
-              />
-              {selectedService && selectedDate && <AppointmentBooker />}
-            </div>
-            {businessHours?.length > 0 && (
-              <div className="w-full xl:w-[25%]">
-                <StoreInfo businessHours={businessHours} />
+        {!loadingData &&
+          !servicesQuery.isError &&
+          servicesQuery.data &&
+          !servicesQuery.data?.error && (
+            <div className="flex flex-col lg:flex-row gap-12">
+              <div className="flex w-full xl:w-[25%] gap-4">
+                <ServicesContainer services={servicesQuery.data} />
               </div>
-            )}
-          </div>
-        )}
+              <div className="w-full lg:w-[50%] flex flex-col gap-8">
+                <AppointmentsContainer
+                  startTime={selectedService?.start_time}
+                  endTime={selectedService?.end_time}
+                  interval={selectedService?.interval_type}
+                />
+                {selectedService && selectedDate && <AppointmentBooker />}
+              </div>
+              {!shopQuery.isError &&
+                !shopQuery.data?.error &&
+                businessHours?.length > 0 && (
+                  <div className="w-full xl:w-[25%]">
+                    <StoreInfo businessHours={businessHours} />
+                  </div>
+                )}
+            </div>
+          )}
         {loadingData && (
           <div className="w-full h-screen flex items-center justify-center">
             <Spinner size="lg" />
           </div>
         )}
-        {servicesQuery.isError && (
+        {(servicesQuery.isError || servicesQuery.data?.error) && (
           <EmptyState
             icon={
-              <HeartCrack className="w-[116px] h-[116px] text-muted-foreground" />
+              <HeartCrack className="w-[80px] h-[80px] text-muted-foreground" />
             }
-            text={
-              "We are having some issues right now. Please try again later."
-            }
+            text={"Something went wrong on our end. Please try again later."}
           />
         )}
       </div>

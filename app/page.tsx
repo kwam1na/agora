@@ -1,5 +1,5 @@
-import StorePage from "./store/page";
+import AppointmentPage from "./bookAppointment/page";
 
 export default function Home() {
-  return <StorePage />;
+  return <AppointmentPage />;
 }
