@@ -39,7 +39,7 @@ const createTimeSlots = (
   let startHour24 =
     (parseInt(startTimeHour) % 12) + (startTimeMeridian === "pm" ? 12 : 0);
 
-  const nowHour24 = (parseInt(nowHour) % 12) + (nowMeridian === "PM" ? 12 : 0);
+  const nowHour24 = (parseInt(nowHour) % 12) + (nowMeridian === "pm" ? 12 : 0);
 
   // cutoff start hour based on the time of the day
   // if the difference between now and start hour is 1, set start hour to 1 hour in the future
@@ -177,7 +177,7 @@ const TimePicker = ({
     getTimeComponents(endTime);
 
   const now = Date.now();
-  const formattedTime = format(now, "h:mm aa");
+  const formattedTime = format(now, "h:mm aaa");
 
   const { hour: nowHour, meridian: nowMeridian } =
     getTimeComponents(formattedTime);
