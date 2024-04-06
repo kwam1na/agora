@@ -1,20 +1,9 @@
 "use client";
 
-import { LoadingButton } from "@/app/components/loading-button";
 import { Appointment } from "@/app/lib/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
-import {
-  Ban,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  Cross,
-  Map,
-  MapPin,
-  X,
-  XCircle,
-} from "lucide-react";
+import { Ban, CheckCircle2, Clock, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { InfoLine } from "./info-line";
 import { ATHENA_URL } from "@/lib/constants";
@@ -81,23 +70,10 @@ export const BookedApointment = ({
 
         <InfoLine
           icon={<Clock className="w-4 h-4 text-muted-foreground" />}
-          text={format(appointment.date, "MMMM dd, yyyy 'at' hh:mm aaa")}
+          text={format(appointment.date, "MMMM d, yyyy 'at' h:mm aaa")}
           isMuted
         />
       </div>
-      {/* <div className="space-y-2">
-        {appointment.status === "pending" && (
-          <LoadingButton
-            className="w-full"
-            variant={"outline"}
-            isLoading={mutation.isPending}
-            onClick={() => mutation.mutate()}
-          >
-            <XCircle className="mr-2 w-4 h-4" />
-            Cancel
-          </LoadingButton>
-        )}
-      </div> */}
     </div>
   );
 };

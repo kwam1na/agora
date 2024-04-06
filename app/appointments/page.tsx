@@ -1,6 +1,6 @@
 "use client";
 
-import { BookedApointment } from "./past/components/booked-appointment";
+import { BookedApointment } from "./components/booked-appointment";
 import { useEffect, useState } from "react";
 import { Appointment, CustomerDetails } from "../lib/types";
 import { useQuery } from "@tanstack/react-query";

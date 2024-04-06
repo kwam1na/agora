@@ -1,4 +1,4 @@
-import { InfoLine } from "@/app/appointments/past/components/info-line";
+import { InfoLine } from "@/app/appointments/components/info-line";
 import { BusinessHours } from "@/lib/types";
 import { format } from "date-fns";
 import { MapPin, Phone } from "lucide-react";

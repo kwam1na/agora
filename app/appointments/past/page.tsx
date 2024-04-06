@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { BookedApointment } from "./components/booked-appointment";
+import { BookedApointment } from "../components/booked-appointment";
 import { Appointment, CustomerDetails } from "@/app/lib/types";
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
