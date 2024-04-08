@@ -96,8 +96,6 @@ export function CustomerInputForm() {
   } = useAppointmentSelector();
 
   const queryClient = useQueryClient();
-  const [shouldSaveCustomerDetails, setShouldSaveCustomerDetails] =
-    useState(false);
   const [savedCustomerDetails, setSavedCustomerDetails] =
     useState<CustomerDetails | null>(null);
   const router = useRouter();
