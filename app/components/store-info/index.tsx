@@ -3,6 +3,7 @@ import { BusinessHours } from "@/lib/types";
 import { format } from "date-fns";
 import { MapPin, Phone } from "lucide-react";
 import { useAppointmentSelector } from "../appointment-selector-provider";
+import { FadeIn } from "../animated/fade-in";
 
 type StoreHourProps = {
   day: string;
@@ -60,7 +61,7 @@ export const StoreInfo = ({
   }));
 
   return (
-    <div className="w-full space-y-8">
+    <FadeIn className="w-full space-y-8">
       <p className="text-md">Business hours</p>
       <StoreHours hours={hours} />
       <div className="flex flex-col gap-4 border rounded-lg p-6">
@@ -77,6 +78,6 @@ export const StoreInfo = ({
           />
         )}
       </div>
-    </div>
+    </FadeIn>
   );
 };

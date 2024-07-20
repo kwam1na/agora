@@ -39,7 +39,9 @@ export const AppointmentSelectorProvider = ({
   const [storeLocation, setStoreLocation] = useState<string | null>(null);
   const [storePhoneNumber, setStorePhoneNumber] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const hasSelectedAppointment =
     !!selectedDate && !!selectedService && !!selectedTimeSlot;

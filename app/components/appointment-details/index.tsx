@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { AppointmentDetails } from "../appointment-booker";
+import { AppointmentDetails } from "../containers/appointment-booker";
 import { useRouter } from "next/navigation";
 import { useAppointmentSelector } from "../appointment-selector-provider";
 import { motion } from "framer-motion";
@@ -30,7 +30,10 @@ export const AppointmentDetailsScreen = () => {
           <Button
             onClick={() => {
               router.replace("/");
-              clear();
+              setTimeout(() => {
+                clear();
+              }, 750);
+              // clear();
             }}
           >
             Book another appointment

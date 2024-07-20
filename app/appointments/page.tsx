@@ -6,6 +6,7 @@ import { Appointment, CustomerDetails } from "../lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/spinner";
 import { ATHENA_URL } from "@/lib/constants";
+import { FadeIn } from "../components/animated/fade-in";
 
 export default function Appointments() {
   const [userDetails, setUserDetails] = useState<CustomerDetails | null>(null);
@@ -31,7 +32,7 @@ export default function Appointments() {
   const appointments: Appointment[] = appointmentsQuery?.data;
 
   return (
-    <div className="h-screen flex">
+    <FadeIn className="h-screen flex">
       {!appointmentsQuery.isLoading && appointments?.length > 0 && (
         <div className="w-full md:w-[60%] h-screen flex flex-col p-4 gap-4">
           {appointments?.map((appointment: Appointment) => {
@@ -54,6 +55,6 @@ export default function Appointments() {
           <Spinner size="lg" />
         </div>
       )}
-    </div>
+    </FadeIn>
   );
 }

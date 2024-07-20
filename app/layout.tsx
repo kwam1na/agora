@@ -22,12 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-zinc-50">
+    <html lang="en" className="">
       <ReactQueryClientProvider>
         <AppointmentSelectorProvider>
           <body>
             <Header />
-            <main className="px-8 md:px-24 py-8 bg-zinc-50">{children}</main>
+            <main className="px-8 lg:px-16 py-8">{children}</main>
             <Toaster />
           </body>
         </AppointmentSelectorProvider>

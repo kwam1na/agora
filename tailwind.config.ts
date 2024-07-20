@@ -29,17 +29,26 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        // primary: {
+        //   DEFAULT: "hsl(var(--primary))",
+        //   foreground: "hsl(var(--primary-foreground))",
+        // },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          100: "hsl(338, 81%, 90%)",
+          200: "hsl(338, 81%, 80%)",
+          300: "hsl(338, 81%, 70%)",
+          400: "hsl(338, 81%, 60%)",
+          500: "hsl(338, 81%, 50%)", // Base color
+          600: "hsl(338, 81%, 45%)",
+          700: "hsl(338, 81%, 35%)",
+          800: "hsl(338, 81%, 25%)",
+          900: "hsl(338, 81%, 15%)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -56,6 +65,45 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(0, 68%, 50%)",
+          foreground: "hsl(var(--destructive-foreground))",
+          100: "hsl(0, 68%, 90%)",
+          200: "hsl(0, 68%, 80%)",
+          300: "hsl(0, 68%, 70%)",
+          400: "hsl(0, 68%, 60%)",
+          500: "hsl(0, 68%, 50%)", // Base color
+          600: "hsl(0, 68%, 45%)",
+          700: "hsl(0, 68%, 35%)",
+          800: "hsl(0, 68%, 25%)",
+          900: "hsl(0, 68%, 15%)",
+        },
+        success: {
+          DEFAULT: "hsl(140, 68%, 50%)",
+          foreground: "hsl(140, 68%, 50%)",
+          100: "hsl(140, 68%, 90%)",
+          200: "hsl(140, 68%, 80%)",
+          300: "hsl(140, 68%, 70%)",
+          400: "hsl(140, 68%, 60%)",
+          500: "hsl(140, 68%, 50%)", // Base color
+          600: "hsl(140, 68%, 45%)",
+          700: "hsl(140, 68%, 35%)",
+          800: "hsl(140, 68%, 25%)",
+          900: "hsl(140, 68%, 15%)",
+        },
+        grey: {
+          DEFAULT: "hsl(209, 12%, 50%)",
+          foreground: "hsl(209, 12%, 50%)",
+          100: "hsl(209, 12%, 90%)",
+          200: "hsl(209, 12%, 80%)",
+          300: "hsl(209, 12%, 70%)",
+          400: "hsl(209, 12%, 60%)",
+          500: "hsl(209, 12%, 50%)", // Base color
+          600: "hsl(209, 12%, 45%)",
+          700: "hsl(209, 12%, 35%)",
+          800: "hsl(209, 12%, 25%)",
+          900: "hsl(209, 12%, 15%)",
         },
       },
       borderRadius: {
