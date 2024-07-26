@@ -1,5 +1,5 @@
-// export const ATHENA_URL = "https://athena-1.vercel.app";
-export const ATHENA_URL = "http://localhost:8080";
+export const ATHENA_URL = "https://athena-1.vercel.app";
+// export const ATHENA_URL = "http://localhost:8080";
 
 export const containerVariants = {
   hidden: {
