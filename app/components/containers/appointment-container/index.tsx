@@ -87,6 +87,7 @@ const areAllAppointmentsBooked = (
   timeSlots: Record<string, string[]>
 ) => {
   const totalSlots = [...timeSlots.morning, ...timeSlots.afternoon];
+
   const bookedSlots = selectedService?.appointments
     .filter(
       (appointment: Appointment) =>
