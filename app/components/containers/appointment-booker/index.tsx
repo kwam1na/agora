@@ -26,7 +26,7 @@ const AppointmentInfo = ({
     <div className="inline-flex gap-2 items-center">
       <div>{icon}</div>
       <div className="flex flex-col">
-        <p className="text-sm">{info}</p>
+        <p className="text-sm text-grey-800">{info}</p>
       </div>
     </div>
   );
@@ -50,18 +50,18 @@ export const AppointmentDetails = () => {
       <AppointmentInfo
         title="Service"
         info={selectedService.name}
-        icon={<Scissors className="w-4 h-4 text-muted-foreground" />}
+        icon={<Scissors className="w-4 h-4 text-grey-500" />}
       />
       <AppointmentInfo
         title="Date"
         info={appointmentDetails}
-        icon={<Clock className="w-4 h-4 text-muted-foreground" />}
+        icon={<Clock className="w-4 h-4 text-grey-500" />}
       />
       {storeLocation && (
         <AppointmentInfo
           title="Location"
           info={storeLocation}
-          icon={<MapPin className="w-4 h-4 text-muted-foreground" />}
+          icon={<MapPin className="w-4 h-4 text-grey-500" />}
         />
       )}
     </div>
@@ -71,10 +71,10 @@ export const AppointmentDetails = () => {
 export const AppointmentBooker = () => {
   const { hasSelectedAppointment } = useAppointmentSelector();
   return (
-    <FadeIn className="w-full space-y-4 border border-1 rounded-sm">
-      <div className="text-grey-900 flex items-center space-x-2 py-2 px-4 border-b">
-        <CalendarCheck2 className="w-4 h-4" />
-        <p className="text-sm">Appointment details</p>
+    <FadeIn className="w-full h-auto space-y-4 border border-1 rounded-sm">
+      <div className="text-grey-800 flex items-center space-x-2 py-2 px-4 border-b">
+        <CalendarCheck2 className="w-4 h-4 text-grey-600" />
+        <p className="text-sm text-grey-900">Appointment details</p>
       </div>
       <div className="flex flex-col gap-8 px-8 pb-8">
         <AppointmentDetails />

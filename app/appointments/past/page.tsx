@@ -51,7 +51,7 @@ export default function PastAppointments() {
         </div>
       )}
       {appointmentsQuery.isLoading && (
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center text-grey-800">
           <Spinner size="lg" />
         </div>
       )}

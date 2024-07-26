@@ -52,10 +52,10 @@ export const ServicesContainer = ({ services }: { services: Service[] }) => {
   const shop = queryClient.getQueryData<Shop>(shopQueryKey);
 
   return (
-    <FadeIn className="w-full space-y-4 border border-1 rounded-sm">
-      <div className="text-grey-900 flex items-center space-x-2 py-2 px-4 border-b">
-        <Scissors className="w-4 h-4" />
-        <p className="text-sm">Choose your service</p>
+    <FadeIn className="w-full h-auto space-y-4 border border-1 rounded-sm">
+      <div className="text-grey-800 flex items-center space-x-2 py-2 px-4 border-b">
+        <Scissors className="w-4 h-4 text-grey-600" />
+        <p className="text-sm text-grey-900">Choose your service</p>
       </div>
       <div className="px-4 space-y-4 pb-8 pt-2">
         {services &&

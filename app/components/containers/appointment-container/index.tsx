@@ -3,7 +3,7 @@
 import { Calendar } from "@/components/ui/calendar";
 import { format, isSameDay, isToday } from "date-fns";
 import { useAppointmentSelector } from "../../appointment-selector-provider";
-import { Appointment } from "@/app/lib/types";
+import { Appointment, Service } from "@/app/lib/types";
 import { useQueryClient } from "@tanstack/react-query";
 import { BusinessHours, Shop } from "@/lib/types";
 import { motion } from "framer-motion";
@@ -79,6 +79,23 @@ const createTimeSlots = (
   }
 
   return slots;
+};
+
+const areAllAppointmentsBooked = (
+  selectedService: Service | null,
+  selectedDate: Date,
+  timeSlots: Record<string, string[]>
+) => {
+  const totalSlots = [...timeSlots.morning, ...timeSlots.afternoon];
+  const bookedSlots = selectedService?.appointments
+    .filter(
+      (appointment: Appointment) =>
+        appointment.service_id == selectedService?.id &&
+        isSameDay(selectedDate, appointment.date)
+    )
+    .map((appointment: Appointment) => appointment.time_slot);
+
+  return totalSlots.every((slot) => bookedSlots?.includes(slot));
 };
 
 const DateSelector = () => {
@@ -164,7 +181,7 @@ const TimePicker = ({
   endTime: string;
   interval: string;
 }) => {
-  const { selectedDate } = useAppointmentSelector();
+  const { selectedDate, selectedService } = useAppointmentSelector();
   const shopData = useGetCachedStoreData();
 
   if (selectedDate) {
@@ -201,15 +218,29 @@ const TimePicker = ({
 
   const { morning, afternoon } = timeSlots;
 
+  const allBooked = areAllAppointmentsBooked(
+    selectedService,
+    selectedDate!,
+    timeSlots
+  );
+
   return (
     <div className="w-full">
       <div className="flex flex-col gap-4 p-8">
-        <TimeOptionRow times={morning} />
-        <TimeOptionRow times={afternoon} />
-        {morning.length == 0 && afternoon.length == 0 && (
-          <p className="text-sm">
-            No time slots available for the selected date
+        {allBooked ? (
+          <p className="text-sm text-muted-foreground">
+            No available appointments for the selected date
           </p>
+        ) : (
+          <>
+            <TimeOptionRow times={morning} />
+            <TimeOptionRow times={afternoon} />
+            {morning.length == 0 && afternoon.length == 0 && (
+              <p className="text-sm">
+                No time slots available for the selected date
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -247,8 +278,8 @@ export const AppointmentsContainer = ({
   return (
     <FadeIn className="w-full h-auto space-y-4 border border-1 rounded-sm">
       <div className="text-grey-800 flex items-center space-x-2 py-2 px-4 border-b">
-        <LucideCalendar className="w-4 h-4" />
-        <p className="text-sm">Pick a date & time</p>
+        <LucideCalendar className="w-4 h-4 text-grey-600" />
+        <p className="text-sm text-grey-900">Pick a date & time</p>
       </div>
       <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-2 px-4">
         <div>

@@ -102,7 +102,7 @@ export default function AppointmentPage() {
               </div>
             )}
           {loadingData && (
-            <div className="w-full h-screen flex items-center justify-center">
+            <div className="w-full h-screen flex items-center justify-center text-grey-800">
               <Spinner size="lg" />
             </div>
           )}

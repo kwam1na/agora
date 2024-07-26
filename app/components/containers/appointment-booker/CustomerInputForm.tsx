@@ -56,12 +56,12 @@ const SavedCustomerDetails = ({
 }) => {
   return (
     <div className="space-y-4">
-      <p className="text-sm">
+      <p className="text-sm text-grey-900">
         We saved your information from your last appointment.
       </p>
       <div className="space-y-4">
         <div className="flex gap-4">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 text-grey-800">
             <div className="flex gap-1">
               <p className="text-sm">{details.first_name}</p>
               <p className="text-sm">{details.last_name}</p>
