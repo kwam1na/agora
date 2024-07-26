@@ -1,8 +1,9 @@
 import { InfoLine } from "@/app/appointments/components/info-line";
 import { BusinessHours } from "@/lib/types";
 import { format } from "date-fns";
-import { MapPin, Phone } from "lucide-react";
+import { Building2, MapPin, Phone, Store } from "lucide-react";
 import { useAppointmentSelector } from "../appointment-selector-provider";
+import { FadeIn } from "../animated/fade-in";
 
 type StoreHourProps = {
   day: string;
@@ -60,10 +61,17 @@ export const StoreInfo = ({
   }));
 
   return (
-    <div className="w-full space-y-8">
-      <p className="text-md">Business hours</p>
-      <StoreHours hours={hours} />
-      <div className="flex flex-col gap-4 border rounded-lg p-6">
+    <FadeIn className="w-full space-y-12 border rounded">
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2 py-2 px-4 border-b">
+          <Store className="w-4 h-4 text-grey-600" />
+          <p className="text-sm text-grey-900">Business hours</p>
+        </div>
+        <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-2 px-10">
+          <StoreHours hours={hours} />
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 border-t p-6">
         {storePhoneNumber && (
           <InfoLine
             icon={<Phone className="w-4 h-4 text-muted-foreground" />}
@@ -77,6 +85,6 @@ export const StoreInfo = ({
           />
         )}
       </div>
-    </div>
+    </FadeIn>
   );
 };

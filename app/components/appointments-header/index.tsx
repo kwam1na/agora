@@ -35,7 +35,7 @@ export const AppointmentsNavBar = ({
           key={route.href}
           href={route.href}
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
+            "text-sm text-grey-800 font-medium transition-colors hover:text-grey-400",
             route.active ? "font-medium" : "text-muted-foreground"
           )}
         >

@@ -1,9 +1,12 @@
 import { Service } from "@/app/lib/types";
-import { useAppointmentSelector } from "../appointment-selector-provider";
-import { CheckCircle2 } from "lucide-react";
+import { useAppointmentSelector } from "../../appointment-selector-provider";
+import { CheckCircle2, Scissors } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Shop } from "@/lib/types";
 import { shopQueryKey } from "@/lib/query-keys";
+import { FadeIn } from "../../animated/fade-in";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ServiceProps {
   service: Service;
@@ -21,7 +24,7 @@ const ServiceOption: React.FC<ServiceProps> = ({ currency, service }) => {
   return (
     <div
       className={`w-full flex items-center px-6 py-3 border ${
-        isSelected ? "border-2 border-[#000] bg-white shadow-md" : ""
+        isSelected ? "border-2 border-grey-800 shadow-md" : ""
       } rounded-lg justify-between items-center p-4 cursor-pointer hover:shadow-sm`}
       onClick={() => {
         setSelectedTimeSlot(null);
@@ -39,7 +42,7 @@ const ServiceOption: React.FC<ServiceProps> = ({ currency, service }) => {
         </p>
       </div>
 
-      {isSelected && <CheckCircle2 className="w-6 h-6" />}
+      {isSelected && <CheckCircle2 className="w-6 h-6 text-grey-800" />}
     </div>
   );
 };
@@ -49,16 +52,21 @@ export const ServicesContainer = ({ services }: { services: Service[] }) => {
   const shop = queryClient.getQueryData<Shop>(shopQueryKey);
 
   return (
-    <div className="w-full space-y-4">
-      <p className="text-md">Services</p>
-      {services &&
-        services?.map((service) => (
-          <ServiceOption
-            key={service.id}
-            service={service}
-            currency={shop?.currency}
-          />
-        ))}
-    </div>
+    <FadeIn className="w-full h-auto space-y-4 border border-1 rounded-sm">
+      <div className="text-grey-800 flex items-center space-x-2 py-2 px-4 border-b">
+        <Scissors className="w-4 h-4 text-grey-600" />
+        <p className="text-sm text-grey-900">Choose your service</p>
+      </div>
+      <div className="px-4 space-y-4 pb-8 pt-2">
+        {services &&
+          services?.map((service) => (
+            <ServiceOption
+              key={service.id}
+              service={service}
+              currency={shop?.currency}
+            />
+          ))}
+      </div>
+    </FadeIn>
   );
 };

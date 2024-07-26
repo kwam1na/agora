@@ -14,9 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoadingButton } from "../loading-button";
+import { LoadingButton } from "../../loading-button";
 import { toast } from "sonner";
-import { useAppointmentSelector } from "../appointment-selector-provider";
+import { useAppointmentSelector } from "../../appointment-selector-provider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Ban, CheckCircle2, Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -56,12 +56,12 @@ const SavedCustomerDetails = ({
 }) => {
   return (
     <div className="space-y-4">
-      <p className="text-sm">
-        We saved your information from your last appointment
+      <p className="text-sm text-grey-900">
+        We saved your information from your last appointment.
       </p>
       <div className="space-y-4">
         <div className="flex gap-4">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 text-grey-800">
             <div className="flex gap-1">
               <p className="text-sm">{details.first_name}</p>
               <p className="text-sm">{details.last_name}</p>
@@ -98,6 +98,7 @@ export function CustomerInputForm() {
   const queryClient = useQueryClient();
   const [savedCustomerDetails, setSavedCustomerDetails] =
     useState<CustomerDetails | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -218,60 +219,31 @@ export function CustomerInputForm() {
     handleSubmit();
   }
 
-  return savedCustomerDetails ? (
+  return savedCustomerDetails && !isEditing ? (
     <SavedCustomerDetails
       details={savedCustomerDetails}
       isButtonDisabled={mutation.isPending || !hasSelectedAppointment}
       isSubmitting={mutation.isPending}
       onClick={() => handleSubmit()}
-      onEditClick={() => setSavedCustomerDetails(null)}
+      onEditClick={() => setIsEditing(true)}
     />
   ) : (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
-        {!savedCustomerDetails && (
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col xl:flex-row gap-4">
-              <div className="w-full xl:w-[50%]">
-                <FormField
-                  control={form.control}
-                  name="first_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>First name</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="w-full xl:w-[50%]">
-                <FormField
-                  control={form.control}
-                  name="last_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Last name</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
-
+        <div className="flex flex-col gap-4">
+          <p className="text-sm w-[70%]">
+            Enter contact information for your appointment.
+          </p>
+          <div className="flex flex-col xl:flex-row gap-4">
             <div className="w-full xl:w-[50%]">
               <FormField
                 control={form.control}
-                name="email"
+                name="first_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-muted-foreground text-xs">
+                      First name
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -284,10 +256,12 @@ export function CustomerInputForm() {
             <div className="w-full xl:w-[50%]">
               <FormField
                 control={form.control}
-                name="phone_number"
+                name="last_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone number</FormLabel>
+                    <FormLabel className="text-muted-foreground text-xs">
+                      Last name
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -297,14 +271,61 @@ export function CustomerInputForm() {
               />
             </div>
           </div>
-        )}
+
+          <div className="w-full xl:w-[50%]">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-muted-foreground text-xs">
+                    Email
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="w-full xl:w-[50%]">
+            <FormField
+              control={form.control}
+              name="phone_number"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-muted-foreground text-xs">
+                    Phone number
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
 
         <div className="w-full flex flex-col xl:flex-row xl:justify-end gap-8 items-center">
           <div
             className={`${
               !hasSelectedAppointment ? "cursor-not-allowed" : ""
-            } w-full xl:w-auto`}
+            } w-full space-x-2 xl:w-auto`}
           >
+            {savedCustomerDetails && (
+              <Button
+                variant={"ghost"}
+                type="button"
+                onClick={() => {
+                  setIsEditing(false);
+                }}
+              >
+                Use saved details
+              </Button>
+            )}
             <LoadingButton
               isLoading={mutation.isPending}
               disabled={mutation.isPending || !hasSelectedAppointment}
